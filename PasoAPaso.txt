@@ -1,3 +1,49 @@
 • Se debe tener el proyecto anterior (API REST Express) y seguir su paso a paso •
 
-• 
+• Docker •
+
+1. Instalar docker: - Descargar e instalar docker desde la página: https://docs.docker.com/desktop/windows/install/
+                    - Habilitar las caracteristicas del sistema: Hyper-V, Windows Subsystem Linuxm, Virtual Machine Plataform.
+                    - Habilitar desde la BIOS: Virtualización.
+                    - Descargar WSL2.
+                    - Reiniciar y verificar que todo funcione correctamente.
+
+2. Configuración de Postgres en Docker: - En esta url podemos encontrar información sobre las imágenes: https://hub.docker.com/
+                                        - Crear la carpeta: postgres_data (Acá se guardara la persistencia)
+                                        - Agregar en el archivo .gitignore: postgres_data (Para que no persista en el repo)
+                                        - Crear archivo: docker-compose.yml
+                                        - Ejecutar contenedor docker: docker-compose up -d postgresMyDB (Se debe tener abierto docker)
+                                        - Verificar que está corriendo: docker-compose ps
+                                        - Dejar de ejecutar contenedor docker: docker-compose down
+
+3. Explorar nuestra BD que está en un contenedor: • Forma Terminal
+                                                  - docker-compose exec postgresMyDB bash (Conectarnos al contenedor vía terminal)
+                                                  - psql -h localhost -d my_store -U admin (Conectarnos a la BD)
+                                                  - \d+ (Ver estructura de la BD)
+                                                  - \q (Salir de la BD)
+                                                  - exit (Salirnos del contenedor)
+
+                                                  • Forma Interfaz
+                                                  - Ir al archivo docker-compose.yml: Agregar el servicio de pgadmin
+                                                  - Ejecutar contenedor docker: docker-compose up -d pgadmin (Se debe tener abierto docker)
+                                                  - Verificar que está corriendo: docker-compose ps
+                                                  - Vemos que hay 2 contenedores corriendo, en el navegador ir al puerto de contenedor pgadmin
+                                                  - Una ves estamos en la página con el puerto (http://localhost:5050/), Seleccionar el server
+                                                    que está a la izquierda del dashboard, click en object, register, servidor.
+                                                  - En el general: Agregar nombre
+                                                  - En la consola del vs, ejecutar: docker ps, así podremos tomar el id del contenedor. Una vez
+                                                    tenemos el id, ejecutar: docker inspect 117722e3ad16 (id del contenedor), así podremos
+                                                    obtener la ip address.
+                                                  - En Conexion: Agregar el ip address tomado en el paso anterior, nombre de la BD (ver archivo
+                                                    docker-compose.yml), usuario y contraseña. (EN VEZ DE LA IP ADDRESS ES MEJOR COLOCAR EL
+                                                    NOMBRE DEL CONTENEDOR, EN NUESTRO CASO: postgresMyDB, ESTO SE DEBE A QUE LA IP VA CAMBIANDO
+                                                    CADA QUE SE DESTRUYE EL CONTENEDOR).
+                                                  - Guardamos y finalmente tenemos nuestra BD en motor gráfico.
+                                                  - Correo el siguiente script de SQL y verificar que se creo correctamente:
+                                                    CREATE TABLE task (
+                                                      id serial PRIMARY KEY,
+                                                      title VARCHAR ( 250 ) NOT NULL,
+                                                      completed boolean DEFAULT false
+                                                    );
+
+
