@@ -2,7 +2,7 @@
 const express = require('express');
 
 // Importando servicio de productos
-const ProductsService = require('../../services/products/products.service');
+const ProductService = require('../../services/products/product.service');
 // Importando los esquemas de productos
 const {
     createProductSchema,
@@ -15,7 +15,7 @@ const validatorHandler = require('../../middlewares/validator.handler');
 const router = express.Router();
 
 // Instanciando el servicio de productos
-const service = new ProductsService();
+const service = new ProductService();
 
 // Rutas para productos
 /* LOS ENDPOINTS ESPECIFICOS DEBEN DECLARARSE ANTES DE LOS ENDPOINTS DINAMICOS!!! */

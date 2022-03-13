@@ -46,4 +46,12 @@
                                                       completed boolean DEFAULT false
                                                     );
 
+• Conexión Nodejs-Postgres •
+
+4. Instalar la dependencia: npm i pg
+
+5. Crear la carpeta: libs
+
+6. Crear el archivo: libs/postgres.js
+
 

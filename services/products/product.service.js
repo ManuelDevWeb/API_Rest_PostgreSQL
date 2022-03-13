@@ -4,7 +4,7 @@ const faker = require('faker');
 const boom = require('@hapi/boom');
 
 // Clase Servicio Productos
-class ProductsService {
+class ProductService {
     constructor() {
         this.products = [];
         // Cada que se cree una instancia del servicio se ejecuta la función
@@ -103,4 +103,4 @@ class ProductsService {
 }
 
 // Exportamos módulo
-module.exports = ProductsService;
+module.exports = ProductService;
