@@ -20,7 +20,7 @@ const service = new CategoryService();
 // Rutas para categorias
 /* LOS ENDPOINTS ESPECIFICOS DEBEN DECLARARSE ANTES DE LOS ENDPOINTS DINAMICOS!!! */
 
-// GET: Obtener tdoas las categorias
+// GET: Obtener todas las categorias
 router.get('/', async(req, res, next) => {
     try {
         // Obteniendo todas las categorias ejecutando el método find

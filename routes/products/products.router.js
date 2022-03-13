@@ -79,7 +79,6 @@ router.patch(
 
             // Actualizando un producto ejecutando el método update
             const updatedProduct = await service.update(productId, body);
-
             res.json(updatedProduct);
         } catch (error) {
             // Next permite ejecutar el siguiente middleware, en este caso los middleware tipo error que hayan
@@ -95,7 +94,6 @@ router.delete('/:productId', async(req, res) => {
 
     // Eliminando un producto ejecutando el método delete
     const deletedProducr = await service.delete(productId);
-
     res.json(deletedProducr);
 });
 

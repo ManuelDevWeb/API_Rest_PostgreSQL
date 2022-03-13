@@ -40,7 +40,7 @@
                                                     CADA QUE SE DESTRUYE EL CONTENEDOR).
                                                   - Guardamos y finalmente tenemos nuestra BD en motor gráfico.
                                                   - Correo el siguiente script de SQL y verificar que se creo correctamente:
-                                                    CREATE TABLE task (
+                                                    CREATE TABLE tasks (
                                                       id serial PRIMARY KEY,
                                                       title VARCHAR ( 250 ) NOT NULL,
                                                       completed boolean DEFAULT false
