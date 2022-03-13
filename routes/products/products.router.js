@@ -2,7 +2,7 @@
 const express = require('express');
 
 // Importando servicio de productos
-const ProductService = require('../../services/products/product.service');
+const ProductService = require('../../services/product/product.service');
 // Importando los esquemas de productos
 const {
     createProductSchema,
