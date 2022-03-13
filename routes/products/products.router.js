@@ -66,7 +66,7 @@ router.post(
     }
 );
 
-// PATHC: Actualizar un producto (Antes de hacer la petición, validamos que el esquema sea correcto)
+// PATCH: Actualizar un producto (Antes de hacer la petición, validamos que el esquema sea correcto)
 router.patch(
     '/:productId',
     validatorHandler(getProductSchema, 'params'),
