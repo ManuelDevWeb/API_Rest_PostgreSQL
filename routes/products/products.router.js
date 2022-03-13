@@ -42,7 +42,6 @@ router.get(
 
             // Obteniendo un producto ejecutando el método findOne
             const product = await service.findOne(productId);
-
             res.json(product);
         } catch (error) {
             // Next permite ejecutar el siguiente middleware, en este caso los middleware tipo error que hayan
@@ -61,7 +60,6 @@ router.post(
 
         // Creando un producto ejecutando el método create
         const newProduct = await service.create(body);
-
         res.status(201).json(newProduct);
     }
 );
