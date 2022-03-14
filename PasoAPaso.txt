@@ -25,7 +25,7 @@
 
                                                   • Forma Interfaz
                                                   - Ir al archivo docker-compose.yml: Agregar el servicio de pgadmin
-                                                  - Ejecutar contenedor docker: docker-compose up -d pgadmin (Se debe tener abierto docker)
+                                                 - Ejecutar contenedor docker: docker-compose up -d pgadmin (Se debe tener abierto docker)
                                                   - Verificar que está corriendo: docker-compose ps
                                                   - Vemos que hay 2 contenedores corriendo, en el navegador ir al puerto de contenedor pgadmin
                                                   - Una ves estamos en la página con el puerto (http://localhost:5050/), Seleccionar el server
@@ -57,5 +57,14 @@
 7. Crear el archivo: libs/postgres.pool.js
 
 8. Implementar las conexiones y pool creado en los servicios
+
+9. Variables de ambiente: - Crear la carpeta: config
+                          - Crear el archivo: config/config.js
+                          - Implementarlas en los archivos de conexión que están en la carpeta: libs
+                          - Crear el archivo: .env (Agregarlo a .gitignore)
+                          - Crear el archivo: .env.example
+                          - Instalar la dependencia: npm i dotenv (Permite leer el archivo .env e Implementarlo en el archivo config/config )
+
+
 
 

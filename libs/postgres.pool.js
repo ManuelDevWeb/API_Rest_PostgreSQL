@@ -5,16 +5,22 @@
   diferentes usuarios.
 */
 
+// Importando pg para conectarnos a la base de datos
 const { Pool } = require('pg');
+
+// Importando la configuración con las variables de entorno
+const { config } = require('./../config/config');
+
+// Protegiendo variables de entorno
+const USER = encodeURIComponent(config.dbUser);
+const PASSWORD = encodeURIComponent(config.dbPassword);
+// Creando URL de conexión
+const URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
 
 // Pool para conectarnos a la BD
 const pool = new Pool({
     // Tener en cuenta que estamos usando docker
-    host: 'localhost',
-    port: 5432,
-    user: 'admin',
-    password: 'admin123',
-    database: 'my_store',
+    connectionString: URI,
 });
 
 // Exportamos módulo
