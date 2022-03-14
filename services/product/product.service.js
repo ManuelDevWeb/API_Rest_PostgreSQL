@@ -3,12 +3,19 @@ const faker = require('faker');
 // Importando boom (Manejo de errores con status code)
 const boom = require('@hapi/boom');
 
+// Importando pool para conectarnos a la BD
+const pool = require('../../libs/postgres.pool');
+
 // Clase Servicio Productos
 class ProductService {
     constructor() {
         this.products = [];
         // Cada que se cree una instancia del servicio se ejecuta la función
         this.generateWithFaker();
+        // Pool de conexiones
+        this.pool = pool;
+        // Escuchar si hay algún error
+        this.pool.on('Error', (err) => console.log(err));
     }
 
     // Generando productos con faker
@@ -42,12 +49,15 @@ class ProductService {
 
     // Buscar Productos
     async find() {
+        // Consulta a realizar en la BD
+        const consulta = 'SELECT * FROM tasks';
+        const respuesta = await this.pool.query(consulta);
         return new Promise((resolve) => {
             setTimeout(() => {
-                resolve(this.products);
+                resolve(respuesta.rows);
             }, 5000);
         });
-        // return this.products;
+        // return respuesta.rows;
     }
 
     // Buscar un producto

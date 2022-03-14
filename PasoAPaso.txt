@@ -54,4 +54,8 @@
 
 6. Crear el archivo: libs/postgres.js
 
+7. Crear el archivo: libs/postgres.pool.js
+
+8. Implementar las conexiones y pool creado en los servicios
+
 
