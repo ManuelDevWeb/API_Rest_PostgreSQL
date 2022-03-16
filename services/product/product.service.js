@@ -4,7 +4,9 @@ const faker = require('faker');
 const boom = require('@hapi/boom');
 
 // Importando pool para conectarnos a la BD
-const pool = require('../../libs/postgres.pool');
+// const pool = require('../../libs/postgres.pool');
+// Importando sequelize para conectarnos a la BD
+const sequelize = require('../../libs/sequelize');
 
 // Clase Servicio Productos
 class ProductService {
@@ -13,9 +15,9 @@ class ProductService {
         // Cada que se cree una instancia del servicio se ejecuta la función
         this.generateWithFaker();
         // Pool de conexiones
-        this.pool = pool;
+        // this.pool = pool;
         // Escuchar si hay algún error
-        this.pool.on('Error', (err) => console.log(err));
+        // this.pool.on('Error', (err) => console.log(err));
     }
 
     // Generando productos con faker
@@ -51,10 +53,12 @@ class ProductService {
     async find() {
         // Consulta a realizar en la BD
         const consulta = 'SELECT * FROM tasks';
-        const respuesta = await this.pool.query(consulta);
+        const [data, metadata] = await sequelize.query(consulta);
+        // const respuesta = await this.pool.query(consulta);
         return new Promise((resolve) => {
             setTimeout(() => {
-                resolve(respuesta.rows);
+                // resolve(respuesta.rows);
+                resolve(data, metadata);
             }, 5000);
         });
         // return respuesta.rows;

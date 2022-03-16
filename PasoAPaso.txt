@@ -63,7 +63,19 @@
                           - Implementarlas en los archivos de conexión que están en la carpeta: libs
                           - Crear el archivo: .env (Agregarlo a .gitignore)
                           - Crear el archivo: .env.example
-                          - Instalar la dependencia: npm i dotenv (Permite leer el archivo .env e Implementarlo en el archivo config/config )
+                          - Instalar la dependencia: npm i dotenv (Permite leer el archivo .env e Implementarlo en el archivo config/config)
+
+• ORM - Sequelize •
+
+10. Instalar la dependencia: npm i --save sequelize
+
+11. Instalar la dependencia: npm i --save pg pg-hstore
+
+12. Crear el archivo: libs/sequelize.js
+
+13. Implementar la conexión con el ORM sequelize en los servicios
+
+14.
 
 
 
