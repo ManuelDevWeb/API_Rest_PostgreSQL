@@ -12,7 +12,10 @@ class UserService {
 
     // Crear usuario
     async create(data) {
-        return data;
+        // Creando usuario con las funcionalidades que nos brinda el ORM Sequelize
+        const newUser = await models.User.create(data);
+        return newUser;
+        // return data;
     }
 
     // Buscar usuarios
@@ -32,20 +35,37 @@ class UserService {
 
     // Buscar un usuario
     async findOne(id) {
-        return { id };
+        // Buscando usuario por id con las funcionalidades que nos brinda el ORM Sequelize
+        const user = await models.User.findByPk(id);
+
+        // Validando que el usuario exista
+        if (!user) {
+            throw boom.notFound('User not found');
+        }
+
+        return user;
     }
 
     // Actualizar usuario
     async update(id, changes) {
-        return {
-            id,
-            changes,
-        };
+        // Buscando usuario por id con las funcionalidades que nos brinda el ORM Sequelize
+        const user = await this.findOne(id);
+        // const user = await models.User.findByPk(id);
+        // Actualizando los datos del usuario
+        const response = await user.update(changes);
+
+        return response;
     }
 
     // Eliminar usuario
     async delete(id) {
-        return { id };
+        // Buscando usuario por id con las funcionalidades que nos brinda el ORM Sequelize
+        const user = await this.findOne(id);
+        // const user = await models.User.findByPk(id);
+        // Eliminando usuario
+        const response = await user.destroy();
+
+        return response;
     }
 }
 

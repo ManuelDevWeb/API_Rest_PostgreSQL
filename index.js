@@ -9,6 +9,7 @@ const {
     logErrors,
     errorHandler,
     boomErrorHandler,
+    ormErrorHandler,
 } = require('./middlewares/error.handler.js');
 
 // Creando una instancia de express
@@ -47,6 +48,7 @@ routes(app);
 // Los middlewares de tipo errores se deben hacer despues de definir el routing
 // Si alguno de estos middlewares no tiene next, no se ejecuta el siguiente
 app.use(logErrors);
+app.use(ormErrorHandler);
 app.use(boomErrorHandler);
 app.use(errorHandler);
 

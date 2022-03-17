@@ -1,5 +1,8 @@
 // Middlewares globales para capturar cualquier error
 
+// Importando validator de errores sequelize
+const { ValidationError } = require('sequelize');
+
 // Middleware para logear errores
 function logErrors(err, req, res, next) {
     console.log('logErrors');
@@ -31,5 +34,19 @@ function boomErrorHandler(err, req, res, next) {
     next(err);
 }
 
+// Middleware para manejar errores orm
+function ormErrorHandler(err, req, res, next) {
+    // Validamos que el error sea de tipo ValidationError (Sequelize)
+    if (err instanceof ValidationError) {
+        res.status(409).json({
+            statusCode: 409,
+            message: err.message,
+            errors: err.errors,
+        });
+    }
+    // Next permite ejecutar el siguiente middleware
+    next(err);
+}
+
 // Exportamos módulo
-module.exports = { logErrors, errorHandler, boomErrorHandler };
+module.exports = { logErrors, errorHandler, boomErrorHandler, ormErrorHandler };
