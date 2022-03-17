@@ -58,6 +58,8 @@ class ProductService {
         return new Promise((resolve) => {
             setTimeout(() => {
                 // resolve(respuesta.rows);
+                // Ver toda la info relacionada con la tabla
+                // resolve(metadata);
                 resolve(data, metadata);
             }, 5000);
         });

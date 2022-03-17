@@ -3,6 +3,8 @@ const { Sequelize } = require('sequelize');
 
 // Importando la configuración con las variables de entorno
 const { config } = require('./../config/config');
+// Importando la configuración de los modelos
+const setupModels = require('./../db/models');
 
 // Protegiendo variables de entorno
 const USER = encodeURIComponent(config.dbUser);
@@ -17,6 +19,12 @@ const sequelize = new Sequelize(URI, {
     // Cada que hagamos una consulta por ORM nos muestra cómo hacerla en lenguaje SQL
     logging: true,
 });
+
+// Ejecutamos la función setupModels despues de crear la isntancia y le pasamos la conexión
+setupModels(sequelize);
+
+// Realiza una sincronización, agarra los modelo y crea la estructura
+sequelize.sync();
 
 // Exportamos módulo
 module.exports = sequelize;

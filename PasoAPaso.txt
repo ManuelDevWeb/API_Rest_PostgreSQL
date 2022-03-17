@@ -75,7 +75,13 @@
 
 13. Implementar la conexión con el ORM sequelize en los servicios
 
-14.
+14. Crear la carpeta: db
+
+15. Crear  la carpeta: db/models
+
+16. Crear el archivo: db/models/user.model.js
+
+17. Crear el archivo: db/models/index.js
 
 
 
