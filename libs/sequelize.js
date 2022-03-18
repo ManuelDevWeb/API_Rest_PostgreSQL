@@ -25,7 +25,9 @@ const sequelize = new Sequelize(URI, {
 // Ejecutamos la función setupModels despues de crear la isntancia y le pasamos la conexión
 setupModels(sequelize);
 
-// Realiza una sincronización, agarra los modelo y crea la estructura
+// Realiza una sincronización, agarra los modelo y crea la estructura (No se aconseja en producción).
+// Crea de nuevo las tablas cada que se llama esta función
+// Para Producción implementar sistema de migración
 sequelize.sync();
 
 // Exportamos módulo

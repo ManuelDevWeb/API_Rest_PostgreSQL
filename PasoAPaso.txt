@@ -114,6 +114,11 @@
 
 • Migraciones •
 
+21. Instalar la dependencia: npm i sequelize-cli -D (Nos ayuda a crear las migraciones)
+
+22. Crear el archivo: .sequelizerc (Tienen su propia conexión)
+
+23. Crear el archivo: db/config.js
 
 
 
