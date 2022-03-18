@@ -3,7 +3,7 @@ const boom = require('@hapi/boom');
 
 // Importando función para conectarnos a la base de datos
 // const getConnection = require('../../libs/postgres');
-// Importando sequelize para conectarnos a la base de datos meriante ORM (En models guarda los modelos)
+// Importando sequelize para conectarnos a la base de datos mediante ORM (En models guarda los modelos)
 const { models } = require('../../libs/sequelize');
 
 // Clase Servicio User

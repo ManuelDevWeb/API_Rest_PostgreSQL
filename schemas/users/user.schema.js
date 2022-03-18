@@ -5,20 +5,20 @@ const Joi = require('joi');
 const userId = Joi.number().integer();
 const email = Joi.string().email();
 const password = Joi.string().min(6).max(15);
-// const role = Joi.string().min(5);
+const role = Joi.string().min(5);
 
 // Esquema de usuario para la creación
 const createUserSchema = Joi.object({
     email: email.required(),
     password: password.required(),
-    // role: role.required(),
+    role: role.required(),
 });
 
 // Esquema de usuario para la actualización
 const updateUserSchema = Joi.object({
     email: email,
     password: password,
-    // role: role,
+    role: role,
 });
 
 // Esquema de usuario para obtener usuario

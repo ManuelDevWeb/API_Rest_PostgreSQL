@@ -28,7 +28,7 @@ setupModels(sequelize);
 // Realiza una sincronización, agarra los modelo y crea la estructura (No se aconseja en producción).
 // Crea de nuevo las tablas cada que se llama esta función
 // Para Producción implementar sistema de migración
-sequelize.sync();
+// sequelize.sync();
 
 // Exportamos módulo
 module.exports = sequelize;

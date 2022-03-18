@@ -120,5 +120,28 @@
 
 23. Crear el archivo: db/config.js
 
+24. Crear la carpeta: db/migrations
+
+25. Crear la carpeta: db/seeders
+
+26. Configurar los scripts para correr las migraciones: - Ir al archivo package.json
+                                                        - Agregar el script para generar: "migrations:generate": "sequelize-cli migration:generate --name"
+                                                        - Ejecutar en consola el script: npm run migrations:generate create-user
+                                                        - El anterior script nos crea una pieza de código lista para correr migraciones,
+                                                          manualmente debemos decirle que hacer y como en el archivo: db/migrations
+                                                        - Agregar el script para correr: "migrations:run": "sequelize-cli db:migrate"
+                                                        - Agregar el script para rollback: "migrations:revert": "sequelize-cli db:migrate:undo"
+                                                        - Eliminar manualmente las tablas de la BD
+                                                        - Ejecutar en consola el comando: npm run migrations:run
+                                                        - La tabla adicional creada: SequelizeMeta, contiene el historial de migraciones,
+                                                          cómo tiene el registro, no vuelve a ejecutar las migraciones que ya estan en el
+                                                          historial.
+
+27. Agregando un after table (Modificar una tabla, agregar o quitar un atributo): - Crear un nuevo campo en el archivo: db/models/user.model
+                                                                                  - Ejecutar en consola el script: npm run migrations:generate add-role-to-user
+                                                                                  - Agregar el campo también en el archivo: schemas/users/user.schema
+                                                                                  - Ejecutar en consola el comando: npm run migrations:run
+
+
 
 
