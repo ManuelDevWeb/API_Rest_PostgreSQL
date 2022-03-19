@@ -142,6 +142,10 @@
                                                                                   - Agregar el campo también en el archivo: schemas/users/user.schema
                                                                                   - Ejecutar en consola el comando: npm run migrations:run
 
+• Relaciones •
+
+28. Relaciones uno a uno: -
+
 
 
 

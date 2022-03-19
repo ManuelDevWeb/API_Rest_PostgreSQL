@@ -1,30 +1,30 @@
 // Importando Sequelize y elementos necesarios
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
-// Definimos nombre de la tabla (Entidad)
-const USER_TABLE = 'users';
+// Definimos nombre de la tablaa (Entidad)
+const CUSTOMER_TABLE = 'customers';
 
 // Definimos el esquema de la entidad
-const UserSchema = {
+const CustomerSchema = {
     id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER,
     },
-    email: {
-        allowNull: false,
-        type: DataTypes.STRING,
-        unique: true,
-    },
-    password: {
+    name: {
         allowNull: false,
         type: DataTypes.STRING,
     },
-    role: {
+    lastName: {
         allowNull: false,
         type: DataTypes.STRING,
-        defaultValue: 'customer',
+        // Nombre con el que se guardara el atributo en la BD (_) por buenas prácticas
+        field: 'last_name',
+    },
+    phone: {
+        allowNull: false,
+        type: DataTypes.STRING,
     },
     createdAt: {
         allowNull: false,
@@ -36,7 +36,7 @@ const UserSchema = {
 };
 
 // Definimos una clase para nuestra entidad
-class User extends Model {
+class Customer extends Model {
     // Método static es un método que pertenece a la clase y no al objeto
 
     // Función para realizar las relaciones
@@ -48,13 +48,13 @@ class User extends Model {
             // Conexión que tendra
             sequelize,
             // Nombre de la tabla
-            tableName: USER_TABLE,
+            tableName: CUSTOMER_TABLE,
             // Nombre del modelo (Clase)
-            modelName: 'User',
+            modelName: 'Customer',
             timestamps: false,
         };
     }
 }
 
 // Exportamos módulos
-module.exports = { USER_TABLE, UserSchema, User };
+module.exports = { CUSTOMER_TABLE, CustomerSchema, Customer };
