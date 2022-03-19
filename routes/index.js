@@ -9,6 +9,8 @@ const usersRouter = require('./users/users.router');
 const categoriesRouter = require('./categories/categories.router');
 // Importando router de ordenes
 const ordersRouter = require('./orders/orders.router');
+// Importando router de clienntes
+const customersRouter = require('./customers/customers.router');
 
 function routerApi(app) {
     const router = express.Router();
@@ -24,6 +26,8 @@ function routerApi(app) {
     router.use('/categories', categoriesRouter);
     // Definimos endpoint para ordenes
     router.use('/orders', ordersRouter);
+    // Definimos endpoint para clientes
+    router.use('/customers', customersRouter);
 }
 
 // Exportamos módulo
