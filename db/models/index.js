@@ -11,6 +11,10 @@ function setupModels(sequelize) {
     User.init(UserSchema, User.config(sequelize));
     // Le indicamos al modelo customer que debe seguir el esquema de CustomerSchema
     Customer.init(CustomerSchema, Customer.config(sequelize));
+
+    // Ejecución del método associate (Enviamos los modelos)
+    Customer.associate(sequelize.models);
+    User.associate(sequelize.models);
 }
 
 // Exportamos módulo

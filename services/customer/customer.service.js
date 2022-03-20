@@ -10,13 +10,21 @@ class CustomerService {
 
     // Crear cliente
     async create(data) {
-        return data;
+        // Creando cliente con las funcionalidades que nos brinda el ORM Sequelize
+        const newCustomer = await models.Customer.create(data, {
+            // Incluimos las asociaciones definidas en la clase Customer del modelo
+            include: ['user'],
+        });
+        return newCustomer;
     }
 
     // Buscar clientes
     async find() {
         // Buscando todos los datos del modelo Customer
-        const respuesta = await models.Customer.findAll();
+        const respuesta = await models.Customer.findAll({
+            // Incluimos las asociaciones definidas en la clase Customer del modelo
+            include: ['user'],
+        });
         return respuesta;
     }
 

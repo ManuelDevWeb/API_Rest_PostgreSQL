@@ -1,14 +1,14 @@
 // Importando Sequelize y elementos necesarios
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
-// Importando nombre de la tabla (Entidad) Users
-const { USER_TABLE } = require('./user.model');
+// Importando nombre de la tabla (Entidad) Categories
+const { CATEGORY_TABLE } = require('./category.model');
 
-// Definimos nombre de la tablaa (Entidad)
-const CUSTOMER_TABLE = 'customers';
+// Definimos nombre de la tabla (Entidad)
+const PRODUCT_TABLE = 'products';
 
 // Definimos el esquema de la entidad
-const CustomerSchema = {
+const ProductSchema = {
     id: {
         allowNull: false,
         autoIncrement: true,
@@ -16,18 +16,20 @@ const CustomerSchema = {
         type: DataTypes.INTEGER,
     },
     name: {
-        allowNull: false,
         type: DataTypes.STRING,
+        allowNull: false,
     },
-    lastName: {
-        allowNull: false,
+    image: {
         type: DataTypes.STRING,
-        // Nombre con el que se guardara el atributo en la BD (_) por buenas prácticas
-        field: 'last_name',
+        allowNull: false,
     },
-    phone: {
+    description: {
+        type: DataTypes.TEXT,
         allowNull: false,
-        type: DataTypes.STRING,
+    },
+    price: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
     },
     createdAt: {
         allowNull: false,
@@ -36,33 +38,29 @@ const CustomerSchema = {
         field: 'created_at',
         defaultValue: Sequelize.NOW,
     },
-    // Atriburo para relacionar con la tabla users
-    userId: {
+    // Atriburo para relacionar con la tabla products
+    categoryId: {
         // Nombre con el que se guardara el atributo en la BD (_) por buenas prácticas
-        field: 'user_id',
+        field: 'category_id',
         allowNull: false,
         type: DataTypes.INTEGER,
-        unique: true,
         // Indicamos la tabla a la que va relacionada
         references: {
-            model: USER_TABLE,
+            model: CATEGORY_TABLE,
             // Foreign Key
             key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
+        onDelete: 'SET NULL',
     },
 };
 
 // Definimos una clase para nuestra entidad
-class Customer extends Model {
+class Product extends Model {
     // Método static es un método que pertenece a la clase y no al objeto
 
     // Función para realizar las relaciones
-    static associate(models) {
-        // Relacion uno a uno (Customer ----- User) Foreign Key se define en la tabla customer
-        Customer.belongsTo(models.User, { as: 'user' });
-    }
+    static associate() {}
 
     // Función para realizar la configuración (Recibimos una conexión)
     static config(sequelize) {
@@ -70,13 +68,13 @@ class Customer extends Model {
             // Conexión que tendra
             sequelize,
             // Nombre de la tabla
-            tableName: CUSTOMER_TABLE,
+            tableName: PRODUCT_TABLE,
             // Nombre del modelo (Clase)
-            modelName: 'Customer',
+            modelName: 'Product',
             timestamps: false,
         };
     }
 }
 
 // Exportamos módulos
-module.exports = { CUSTOMER_TABLE, CustomerSchema, Customer };
+module.exports = { Product, ProductSchema, PRODUCT_TABLE };

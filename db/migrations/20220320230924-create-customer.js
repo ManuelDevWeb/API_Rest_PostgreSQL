@@ -1,7 +1,10 @@
 'use strict';
 
-// Importando el modelo USER
-const { UserSchema, USER_TABLE } = require('./../models/user.model');
+// Importando el modelo CUSTOMER
+const {
+    CustomerSchema,
+    CUSTOMER_TABLE,
+} = require('./../models/customer.model');
 
 module.exports = {
     async up(queryInterface) {
@@ -12,10 +15,9 @@ module.exports = {
          * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
          */
         // Creando tabla, indicamos el nombre de la tabla y el esquema
-        await queryInterface.createTable(USER_TABLE, UserSchema);
+        await queryInterface.createTable(CUSTOMER_TABLE, CustomerSchema);
     },
 
-    // Revertir cambios (Similar a control de versiones git)
     async down(queryInterface) {
         /**
          * Add reverting commands here.
@@ -24,6 +26,6 @@ module.exports = {
          * await queryInterface.dropTable('users');
          */
         // Eliminando tabla
-        await queryInterface.dropTable(USER_TABLE);
+        await queryInterface.dropTable(CUSTOMER_TABLE);
     },
 };

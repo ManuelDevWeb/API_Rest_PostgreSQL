@@ -24,7 +24,10 @@ class UserService {
         // const client = await getConnection();
 
         // Buscando todos los datos del modelo User
-        const respuesta = await models.User.findAll();
+        const respuesta = await models.User.findAll({
+            // Incluimos las asociaciones definidas en la clase User del modelo
+            include: ['customer'],
+        });
 
         // Una vez tenemos el cliente, podemos ejecutar querys
         // const respuesta = await client.query('SELECT * FROM tasks ORDER BY title');
@@ -61,7 +64,8 @@ class UserService {
     async delete(id) {
         // Buscando usuario por id con las funcionalidades que nos brinda el ORM Sequelize
         const user = await this.findOne(id);
-        // const user = await models.User.findByPk(id);
+        //const user = await models.User.findByPk(id);
+
         // Eliminando usuario
         const response = await user.destroy();
 

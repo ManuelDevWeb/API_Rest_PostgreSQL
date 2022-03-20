@@ -2,29 +2,24 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
 // Definimos nombre de la tabla (Entidad)
-const USER_TABLE = 'users';
+const CATEGORY_TABLE = 'categories';
 
 // Definimos el esquema de la entidad
-const UserSchema = {
+const CategorySchema = {
     id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER,
     },
-    email: {
-        allowNull: false,
+    name: {
         type: DataTypes.STRING,
         unique: true,
-    },
-    password: {
         allowNull: false,
-        type: DataTypes.STRING,
     },
-    role: {
-        allowNull: false,
+    image: {
         type: DataTypes.STRING,
-        defaultValue: 'customer',
+        allowNull: false,
     },
     createdAt: {
         allowNull: false,
@@ -36,18 +31,11 @@ const UserSchema = {
 };
 
 // Definimos una clase para nuestra entidad
-class User extends Model {
+class Category extends Model {
     // Método static es un método que pertenece a la clase y no al objeto
 
     // Función para realizar las relaciones
-    static associate(models) {
-        // Relacion uno a uno (User ----- Customer) Foreign Key ya se definió en Customer
-        User.hasOne(models.Customer, {
-            as: 'customer',
-            // Foreign Key definida en Customer
-            foreignKey: 'userId',
-        });
-    }
+    static associate() {}
 
     // Función para realizar la configuración (Recibimos una conexión)
     static config(sequelize) {
@@ -55,13 +43,13 @@ class User extends Model {
             // Conexión que tendra
             sequelize,
             // Nombre de la tabla
-            tableName: USER_TABLE,
+            tableName: CATEGORY_TABLE,
             // Nombre del modelo (Clase)
-            modelName: 'User',
+            modelName: 'Category',
             timestamps: false,
         };
     }
 }
 
 // Exportamos módulos
-module.exports = { USER_TABLE, UserSchema, User };
+module.exports = { Category, CategorySchema, CATEGORY_TABLE };

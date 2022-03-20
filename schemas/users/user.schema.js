@@ -2,7 +2,7 @@
 const Joi = require('joi');
 
 // Campos y sus validaciones
-const userId = Joi.number().integer();
+const id = Joi.number().integer();
 const email = Joi.string().email();
 const password = Joi.string().min(6).max(15);
 const role = Joi.string().min(5);
@@ -23,7 +23,7 @@ const updateUserSchema = Joi.object({
 
 // Esquema de usuario para obtener usuario
 const getUserSchema = Joi.object({
-    userId: userId.required(),
+    id: id.required(),
 });
 
 // Exportamos módulo
