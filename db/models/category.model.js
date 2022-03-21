@@ -13,13 +13,13 @@ const CategorySchema = {
         type: DataTypes.INTEGER,
     },
     name: {
+        allowNull: false,
         type: DataTypes.STRING,
         unique: true,
-        allowNull: false,
     },
     image: {
-        type: DataTypes.STRING,
         allowNull: false,
+        type: DataTypes.STRING,
     },
     createdAt: {
         allowNull: false,
@@ -35,7 +35,14 @@ class Category extends Model {
     // Método static es un método que pertenece a la clase y no al objeto
 
     // Función para realizar las relaciones
-    static associate() {}
+    static associate(models) {
+        // Relación uno a muchos (Category -----> Product) Foreign Key ya se definió en Product
+        Category.hasMany(models.Product, {
+            as: 'products',
+            // Foreign Key definida en Product
+            foreignKey: 'categoryId',
+        });
+    }
 
     // Función para realizar la configuración (Recibimos una conexión)
     static config(sequelize) {

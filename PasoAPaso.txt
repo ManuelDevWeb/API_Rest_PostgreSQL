@@ -144,7 +144,7 @@
 
 • Relaciones •
 
-28. Relaciones uno a uno (Customee ----- User): - Realizar la relación en el archivo: models/customer.model.js
+28. Relaciones uno a uno (Customer ----- User): - Realizar la relación en el archivo: models/customer.model.js
                                                 - Ejecutar las relaciones en el archivo: models/index.js
                                                 - Ejecutar en consola el script: npm run migrations:generate create-customer
                                                 - El anterior script nos crea una pieza de código lista para correr migraciones,
@@ -156,7 +156,14 @@
                                                 - Modificar el metodo find para incluir asociación en el archivo: services/users/user.service.js
                                                 - Modificar el esquema: schemas/customers/customer.schema.js
 
-29. Relaciones uno a muchos ():
+29. Relaciones uno a muchos (Caterogy ----> Product): - Realizar la relación en el archivo: models/category.model.js
+                                                      - Realizar la relación en el archivo: models/product.model.js
+                                                      - Ejecutar las relaciones en el archivo: models/index.js
+                                                      - Ejecutar en consola el script: npm run migrations:generate products
+                                                      - El anterior script nos crea una pieza de código lista para correr migraciones,
+                                                        manualmente debemos decirle que hacer y como en el archivo: db/migrations
+                                                      - Ejecutar en consola el comando: npm run migrations:run
+
 
 
 

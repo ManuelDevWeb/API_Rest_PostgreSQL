@@ -13,6 +13,7 @@ class CustomerService {
         // Creando cliente con las funcionalidades que nos brinda el ORM Sequelize
         const newCustomer = await models.Customer.create(data, {
             // Incluimos las asociaciones definidas en la clase Customer del modelo
+            // Permitiendo crear un usuario en la tabla User enviando la info desde el endpoint de Customer
             include: ['user'],
         });
         return newCustomer;

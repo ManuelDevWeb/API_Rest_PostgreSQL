@@ -16,20 +16,20 @@ const ProductSchema = {
         type: DataTypes.INTEGER,
     },
     name: {
-        type: DataTypes.STRING,
         allowNull: false,
+        type: DataTypes.STRING,
     },
     image: {
-        type: DataTypes.STRING,
         allowNull: false,
+        type: DataTypes.STRING,
     },
     description: {
-        type: DataTypes.TEXT,
         allowNull: false,
+        type: DataTypes.TEXT,
     },
     price: {
-        type: DataTypes.INTEGER,
         allowNull: false,
+        type: DataTypes.INTEGER,
     },
     createdAt: {
         allowNull: false,
@@ -51,7 +51,7 @@ const ProductSchema = {
             key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
+        onDelete: 'CASCADE',
     },
 };
 
@@ -60,7 +60,10 @@ class Product extends Model {
     // Método static es un método que pertenece a la clase y no al objeto
 
     // Función para realizar las relaciones
-    static associate() {}
+    static associate(models) {
+        // Relación uno a uno (Producto ------ Category) Foreign Key se define en la tabla product
+        Product.belongsTo(models.Category, { as: 'category' });
+    }
 
     // Función para realizar la configuración (Recibimos una conexión)
     static config(sequelize) {
