@@ -33,15 +33,15 @@ router.get('/filter', (req, res) => {
 
 // GET: Obtener un producto (Antes de hacer la petición, validamos que el esquema sea correcto)
 router.get(
-    '/:productId',
+    '/:id',
     validatorHandler(getProductSchema, 'params'),
     async(req, res, next) => {
         try {
             // Accediendo a los parámetros que vienen por URL
-            const { productId } = req.params;
+            const { id } = req.params;
 
             // Obteniendo un producto ejecutando el método findOne
-            const product = await service.findOne(productId);
+            const product = await service.findOne(id);
             res.json(product);
         } catch (error) {
             // Next permite ejecutar el siguiente middleware, en este caso los middleware tipo error que hayan
@@ -66,19 +66,19 @@ router.post(
 
 // PATCH: Actualizar un producto (Antes de hacer la petición, validamos que el esquema sea correcto)
 router.patch(
-    '/:productId',
+    '/:id',
     validatorHandler(getProductSchema, 'params'),
     validatorHandler(updateProductSchema, 'body'),
     async(req, res, next) => {
         try {
             // Accediendo a los parámetros que vienen por URL
-            const { productId } = req.params;
+            const { id } = req.params;
 
             // Accediendo a los datos que vienen por el body (Utilizar postman o insomnia)
             const body = req.body;
 
             // Actualizando un producto ejecutando el método update
-            const updatedProduct = await service.update(productId, body);
+            const updatedProduct = await service.update(id, body);
             res.json(updatedProduct);
         } catch (error) {
             // Next permite ejecutar el siguiente middleware, en este caso los middleware tipo error que hayan
@@ -88,12 +88,12 @@ router.patch(
 );
 
 // DELETE: Eliminar un producto
-router.delete('/:productId', async(req, res) => {
+router.delete('/:id', async(req, res) => {
     // Accediendo a los parámetros que vienen por URL
-    const { productId } = req.params;
+    const { id } = req.params;
 
     // Eliminando un producto ejecutando el método delete
-    const deletedProducr = await service.delete(productId);
+    const deletedProducr = await service.delete(id);
     res.json(deletedProducr);
 });
 

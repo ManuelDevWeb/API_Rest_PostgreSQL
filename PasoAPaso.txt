@@ -163,6 +163,7 @@
                                                       - El anterior script nos crea una pieza de código lista para correr migraciones,
                                                         manualmente debemos decirle que hacer y como en el archivo: db/migrations
                                                       - Ejecutar en consola el comando: npm run migrations:run
+                                                      - Modificar los metodos del servicio de category para incluir asociación en el archivo: services/categories/category.service.js
 
 
 

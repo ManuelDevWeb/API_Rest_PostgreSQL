@@ -2,7 +2,7 @@
 const Joi = require('joi');
 
 // Campos y sus validaciones
-const id = Joi.number().integer();
+const categoryId = Joi.number().integer();
 const name = Joi.string().min(3).max(15);
 const image = Joi.string().uri();
 
@@ -20,7 +20,7 @@ const updateCategorySchema = Joi.object({
 
 // Esquema de categoría para obtener categoría
 const getCategorySchema = Joi.object({
-    id: id.required(),
+    categoryId: categoryId.required(),
 });
 
 // Exportamos módulo

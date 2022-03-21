@@ -5,8 +5,9 @@ const boom = require('@hapi/boom');
 
 // Importando pool para conectarnos a la BD
 // const pool = require('../../libs/postgres.pool');
-// Importando sequelize para conectarnos a la BD
-const sequelize = require('../../libs/sequelize');
+
+// Importando sequelize para conectarnos a la base de datos mediante ORM (En models guarda los modelos)
+const { models } = require('../../libs/sequelize');
 
 // Clase Servicio Productos
 class ProductService {
@@ -38,32 +39,19 @@ class ProductService {
 
     // Crear Producto
     async create(data) {
-        const newProduct = {
-            id: faker.datatype.uuid(),
-            // Concatenamos los valores que vienen por argumento
-            ...data,
-        };
-
-        this.products.push(newProduct);
-
+        // Creando producto con las funcionalidades que nos brinda el ORM Sequelize
+        const newProduct = await models.Product.create(data);
         return newProduct;
     }
 
     // Buscar Productos
     async find() {
-        // Consulta a realizar en la BD
-        const consulta = 'SELECT * FROM tasks';
-        const [data, metadata] = await sequelize.query(consulta);
-        // const respuesta = await this.pool.query(consulta);
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                // resolve(respuesta.rows);
-                // Ver toda la info relacionada con la tabla
-                // resolve(metadata);
-                resolve(data, metadata);
-            }, 5000);
+        // Buscar producto con las funcionalidades que nos brinda el ORM Sequelize
+        const products = await models.Product.findAll({
+            // Incluimos las asociaciones definidas en la clase Product del modelo
+            include: ['category'],
         });
-        // return respuesta.rows;
+        return products;
     }
 
     // Buscar un producto

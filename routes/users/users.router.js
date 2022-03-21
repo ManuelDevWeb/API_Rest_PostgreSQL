@@ -34,15 +34,15 @@ router.get('/', async(req, res, next) => {
 
 // GET: Obtener un usuario (Antes de hacer la petición, validamos que el esquema sea correcto)
 router.get(
-    '/:userId',
+    '/:id',
     validatorHandler(getUserSchema, 'params'),
     async(req, res, next) => {
         try {
             // Accediendo a los parámetros que vienen por URL
-            const { userId } = req.params;
+            const { id } = req.params;
 
             // Obteniendo un usuario ejecutando el método findOne
-            const user = await service.findOne(userId);
+            const user = await service.findOne(id);
             res.json(user);
         } catch (error) {
             // Next permite ejecutar el siguiente middleware, en este caso los middleware tipo error que hayan
@@ -72,19 +72,19 @@ router.post(
 
 // PATCH: Actualizar un usuario (Antes de hacer la petición, validamos que el esquema sea correcto)
 router.patch(
-    '/:userId',
+    '/:id',
     validatorHandler(getUserSchema, 'params'),
     validatorHandler(updateUserSchema, 'body'),
     async(req, res, next) => {
         try {
             // Accediendo a los parámetros que vienen por URL
-            const { userId } = req.params;
+            const { id } = req.params;
 
             // Accediendo a los datos que vienen por el body (Utilizar postman o insomnia)
             const body = req.body;
 
             // Actualizando un usuario ejecutando el método update
-            const updatedUser = await service.update(userId, body);
+            const updatedUser = await service.update(id, body);
             res.json(updatedUser);
         } catch (error) {
             // Next permite ejecutar el siguiente middleware, en este caso los middleware tipo error que hayan
@@ -95,15 +95,15 @@ router.patch(
 
 // DELETE: Eliminar un usuario (Antes de hacer la petición, validamos que el esquema sea correcto)
 router.delete(
-    '/:userId',
+    '/:id',
     validatorHandler(getUserSchema, 'params'),
     async(req, res, next) => {
         try {
             // Accediendo a los parámetros que vienen por URL
-            const { userId } = req.params;
+            const { id } = req.params;
 
             // Eliminando un usuario ejecutando el método delete
-            const deletedUser = await service.delete(userId);
+            const deletedUser = await service.delete(id);
             res.json(deletedUser);
         } catch (error) {
             // Next permite ejecutar el siguiente middleware, en este caso los middleware tipo error que hayan
