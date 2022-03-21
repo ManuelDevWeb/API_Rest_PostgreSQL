@@ -8,6 +8,8 @@ const { Customer, CustomerSchema } = require('./customer.model');
 const { Category, CategorySchema } = require('./category.model');
 // Importando modelo product
 const { Product, ProductSchema } = require('./product.model');
+// Importando modelo order
+const { Order, OrderSchema } = require('./order.model');
 
 // Configuración de los modelos
 function setupModels(sequelize) {
@@ -19,12 +21,15 @@ function setupModels(sequelize) {
     Category.init(CategorySchema, Category.config(sequelize));
     // Le indicamos al modelo product que debe seguir el esquema de ProductSchema
     Product.init(ProductSchema, Product.config(sequelize));
+    // Le indicamos al modelo order que debe seguir el esquema de OrderSchema
+    Order.init(OrderSchema, Order.config(sequelize));
 
     // Ejecución del método associate (Enviamos los modelos)
     User.associate(sequelize.models);
     Customer.associate(sequelize.models);
     Category.associate(sequelize.models);
     Product.associate(sequelize.models);
+    Order.associate(sequelize.models);
 }
 
 // Exportamos módulo

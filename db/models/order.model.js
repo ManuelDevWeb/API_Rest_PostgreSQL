@@ -1,33 +1,19 @@
 // Importando Sequelize y elementos necesarios
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
-// Importando nombre de la tabla (Entidad) Users
-const { USER_TABLE } = require('./user.model');
+// Importando nombre de la tabla (Entidad) Customers
+const { CUSTOMER_TABLE } = require('./customer.model');
 
-// Definimos nombre de la tablaa (Entidad)
-const CUSTOMER_TABLE = 'customers';
+// Definimos nombre de la tabla (Entidad)
+const ORDER_TABLE = 'orders';
 
 // Definimos el esquema de la entidad
-const CustomerSchema = {
+const OrderSchema = {
     id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER,
-    },
-    name: {
-        allowNull: false,
-        type: DataTypes.STRING,
-    },
-    lastName: {
-        allowNull: false,
-        type: DataTypes.STRING,
-        // Nombre con el que se guardara el atributo en la BD (_) por buenas prácticas
-        field: 'last_name',
-    },
-    phone: {
-        allowNull: false,
-        type: DataTypes.STRING,
     },
     createdAt: {
         allowNull: false,
@@ -36,16 +22,16 @@ const CustomerSchema = {
         field: 'created_at',
         defaultValue: Sequelize.NOW,
     },
-    // Atriburo para relacionar con la tabla users
-    userId: {
+    // Atributo para relacionar con la tabla customers
+    customerId: {
         // Nombre con el que se guardara el atributo en la BD (_) por buenas prácticas
-        field: 'user_id',
+        field: 'customer_id',
         allowNull: false,
         type: DataTypes.INTEGER,
         unique: true,
         // Indicamos la tabla a la que va relacionada
         references: {
-            model: USER_TABLE,
+            model: CUSTOMER_TABLE,
             // Foreign Key
             key: 'id',
         },
@@ -55,19 +41,13 @@ const CustomerSchema = {
 };
 
 // Definimos una clase para nuestra entidad
-class Customer extends Model {
+class Order extends Model {
     // Método static es un método que pertenece a la clase y no al objeto
 
     // Función para realizar las relaciones
     static associate(models) {
-        // Relacion uno a uno (Customer ----- User) Foreign Key se define en la tabla Customer
-        Customer.belongsTo(models.User, { as: 'user' });
-        // Relación uno a muchos (Customer ----> Order) Foreign Key se define en la tabla Order
-        Customer.hasMany(models.Order, {
-            as: 'orders',
-            // Foreign Key definido en Order
-            foreignKey: 'customerId',
-        });
+        // Relación uno a muchos (Order ----> Customer) Foreign Key se define en la tabla Order
+        Order.belongsTo(models.Customer, { as: 'customer' });
     }
 
     // Función para realizar la configuración (Recibimos una conexión)
@@ -76,9 +56,9 @@ class Customer extends Model {
             // Conexión que tendra
             sequelize,
             // Nombre de la tabla
-            tableName: CUSTOMER_TABLE,
+            tableName: ORDER_TABLE,
             // Nombre del modelo (Clase)
-            modelName: 'Customer',
+            modelName: 'Order',
             timestamps: false,
         };
     }
@@ -86,7 +66,7 @@ class Customer extends Model {
 
 // Exportamos módulos
 module.exports = {
-    CUSTOMER_TABLE,
-    CustomerSchema,
-    Customer,
+    ORDER_TABLE,
+    OrderSchema,
+    Order,
 };

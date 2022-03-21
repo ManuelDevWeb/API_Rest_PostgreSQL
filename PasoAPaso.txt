@@ -164,6 +164,18 @@
                                                         manualmente debemos decirle que hacer y como en el archivo: db/migrations
                                                       - Ejecutar en consola el comando: npm run migrations:run
                                                       - Modificar los metodos del servicio de category para incluir asociación en el archivo: services/categories/category.service.js
+                                                      - Modificar los metodos del servicio de product para incluir asociación en el archivo: services/products/product.service.js
+
+30. Relaciones muchos a muchos (Product <-----> Orders). Necesitamos una tabla intermedia (Orden de Compra):
+                                                         - Realizar la relación en el archivo: models/order.model.js
+                                                         - Realizar la relación en el archivo: models/customer.model.js
+                                                         - Ejecutar las relaciones en el archivo: models/index.js
+                                                         - Ejecutar en consola el script: npm run migrations:generate order
+                                                         - Modificar los metodos del servicio de order para incluir asociación en el archivo: services/orders/order.service.js
+
+• Consultas •
+
+30.
 
 
 

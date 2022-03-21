@@ -1,13 +1,18 @@
 // Importando boom (Manejo de errores con status code)
 const boom = require('@hapi/boom');
 
+// Importando sequelize para conectarnos a la base de datos mediante ORM (En models guarda los modelos)
+const { models } = require('../../libs/sequelize');
+
 // Clase Servicio Order
 class OrderService {
     constructor() {}
 
     // Crear Orden
     async create(data) {
-        return data;
+        // Creando orden con las funcionalidades que nos brinda el ORM Sequelize
+        const newOrder = await models.Order.create(data);
+        return newOrder;
     }
 
     // Buscar Ordenes
@@ -17,8 +22,22 @@ class OrderService {
 
     // Buscar una orden
     async findOne(id) {
-        // Se debe retornar un objeto
-        return { id };
+        // Buscando orden por id con las funcionalidades que nos brinda el ORM Sequelize
+        const order = await models.Order.findByPk(id, {
+            // Incluimos las asociaciones definidas en la clase Order del modelo
+            // (En este caso la anidación va mas a profundiad, es decir, aparte de customer también nos traerá la info del user)
+            include: [{
+                association: 'customer',
+                include: ['user'],
+            }, ],
+        });
+
+        // Validando que la orden exista
+        if (!order) {
+            throw boom.notFound('Order not found');
+        }
+
+        return order;
     }
 
     // Actualizar una orden
