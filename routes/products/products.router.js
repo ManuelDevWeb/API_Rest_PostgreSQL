@@ -8,6 +8,7 @@ const {
     createProductSchema,
     updateProductSchema,
     getProductSchema,
+    queryProductSchema,
 } = require('../../schemas/products/product.schema');
 // Importando middleware de validaciones
 const validatorHandler = require('../../middlewares/validator.handler');
@@ -21,11 +22,23 @@ const service = new ProductService();
 /* LOS ENDPOINTS ESPECIFICOS DEBEN DECLARARSE ANTES DE LOS ENDPOINTS DINAMICOS!!! */
 
 // GET: Obtener todos los productos
-router.get('/', async(req, res) => {
-    // Obteniendo todos los productos ejecutando el método find
-    const products = await service.find();
-    res.json(products);
-});
+router.get(
+    '/',
+    validatorHandler(queryProductSchema, 'query'),
+    async(req, res, next) => {
+        try {
+            // Accediendo a los parámetros de la query
+            const { limit, offset } = req.query;
+
+            // Obteniendo todos los productos ejecutando el método find
+            const products = await service.find(limit, offset);
+            res.json(products);
+        } catch (error) {
+            // Next permite ejecutar el siguiente middleware, en este caso los middleware tipo error que hayan
+            next(error);
+        }
+    }
+);
 
 router.get('/filter', (req, res) => {
     res.send('Yo soy un filter');

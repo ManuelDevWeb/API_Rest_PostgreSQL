@@ -45,12 +45,24 @@ class ProductService {
     }
 
     // Buscar Productos
-    async find() {
-        // Buscar producto con las funcionalidades que nos brinda el ORM Sequelize
-        const products = await models.Product.findAll({
+    async find(limit = 5, offset = 0) {
+        const options = {
             // Incluimos las asociaciones definidas en la clase Product del modelo
             include: ['category'],
-        });
+            limit,
+            offset,
+        };
+
+        // Validando que los parámetros no estén vacíos y asignando el valor
+        if (limit && offset) {
+            // Cantidad de productos a mostrar
+            options.limit = parseInt(limit);
+            // Posición en la cual iniciara
+            options.offset = parseInt(offset);
+        }
+
+        // Buscar producto con las funcionalidades que nos brinda el ORM Sequelize
+        const products = await models.Product.findAll(options);
         return products;
     }
 

@@ -181,12 +181,13 @@
                                                       - Ejecutar en consola el comando: npm run migrations:run
                                                       - Modificar los metodos del servicio de order para incluir asociación en el archivo: services/orders/order.service.js
 
-
-
-
 • Consultas •
 
-32.
+32. Paginación: - Limit -> Número de elementos que quiero que traigan
+                - Offset -> Número de elementos que quiero escapar (Apuntador o posición del index)
+                - Modificar el schema de product y router
+                - Modificar el método find del servicio de product para aplicar Paginación en el archivo: services/products/product.service.js
+
 
 
 
