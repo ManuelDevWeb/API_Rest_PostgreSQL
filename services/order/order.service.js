@@ -15,6 +15,13 @@ class OrderService {
         return newOrder;
     }
 
+    // Crear item
+    async addItem(data) {
+        // Creando item con las funcionalidades que nos brinda el ORM Sequelize
+        const newItem = await models.OrderProduct.create(data);
+        return newItem;
+    }
+
     // Buscar Ordenes
     async find() {
         return [];
@@ -27,9 +34,12 @@ class OrderService {
             // Incluimos las asociaciones definidas en la clase Order del modelo
             // (En este caso la anidación va mas a profundiad, es decir, aparte de customer también nos traerá la info del user)
             include: [{
-                association: 'customer',
-                include: ['user'],
-            }, ],
+                    association: 'customer',
+                    include: ['user'],
+                },
+                // Incluimos asosiación items
+                'items',
+            ],
         });
 
         // Validando que la orden exista

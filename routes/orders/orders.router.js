@@ -7,6 +7,7 @@ const OrderService = require('../../services/order/order.service');
 const {
     createOrderSchema,
     getOrderSchema,
+    addItemSchema,
 } = require('../../schemas/orders/order.schema');
 // Importando middleware de validaciones
 const validatorHandler = require('../../middlewares/validator.handler');
@@ -62,6 +63,25 @@ router.post(
             // Creando una orden ejecutando el método create
             const newOrder = await service.create(body);
             res.status(201).json(newOrder);
+        } catch (error) {
+            // Next permite ejecutar el siguiente middleware, en este caso los middleware tipo error que hayan
+            next(error);
+        }
+    }
+);
+
+// POST: Crear un producto en una orden (Antes de hacer la petición, validamos que el esquema sea correcto)
+router.post(
+    '/add-item',
+    validatorHandler(addItemSchema, 'body'),
+    async(req, res, next) => {
+        try {
+            // Accediendo a los datos que vienen por el body (Utilizar postman o insomnia)
+            const body = req.body;
+
+            // Creando una item ejecutando el método create
+            const newItem = await service.addItem(body);
+            res.status(201).json(newItem);
         } catch (error) {
             // Next permite ejecutar el siguiente middleware, en este caso los middleware tipo error que hayan
             next(error);

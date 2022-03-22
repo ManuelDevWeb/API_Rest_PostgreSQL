@@ -38,6 +38,20 @@ const OrderSchema = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
     },
+    // Calcular el total
+    total: {
+        // Campo virtual, que no estará en la BD
+        type: DataTypes.VIRTUAL,
+        get() {
+            // Validando si hay elementos (items, es la manera en la que llamamos la asociación VER LINEA 64)
+            if (this.items.length > 0) {
+                return this.items.reduce((total, item) => {
+                    return total + item.price * item.OrderProduct.amount;
+                }, 0);
+            }
+            return 0;
+        },
+    },
 };
 
 // Definimos una clase para nuestra entidad
@@ -46,8 +60,18 @@ class Order extends Model {
 
     // Función para realizar las relaciones
     static associate(models) {
-        // Relación uno a muchos (Order ----> Customer) Foreign Key se define en la tabla Order
+        // Relación uno a uno (Order ----- Customer) Foreign Key se define en la tabla Order
         Order.belongsTo(models.Customer, { as: 'customer' });
+        // Relación muchos a muchos (Order <----> Product) Foreign Key se define en la tabla OrderProduct, debemos enviar tabla intermedia
+        Order.belongsToMany(models.Product, {
+            as: 'items',
+            // Nombre de la tabla intermedia que resolvera la relación
+            through: models.OrderProduct,
+            // Foreign Key definida en OrderProduct
+            foreignKey: 'orderId',
+            // Indicamos la otra Key definida en OrderProduct
+            otherKey: 'productId',
+        });
     }
 
     // Función para realizar la configuración (Recibimos una conexión)
