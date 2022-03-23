@@ -194,7 +194,6 @@
 • Deploy en Heroku •
 
 34. Consideraciones en Migraciones: - Si ya sabemos cuales son nuestras migraciones, pasamos todo a una sola migración
-                                    -
 
 35. Despliegue en Heroku: - Ver documentación del addon: https://elements.heroku.com/addons/heroku-postgresql
                           - Logearnos en Heroku: heroku login
