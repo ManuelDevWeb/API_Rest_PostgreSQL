@@ -212,6 +212,8 @@
                           - Ir al archivo de conexión de la BD: libs/sequelize.js
                           // Se recomienda la segunda opción, ya que solo tocaria manejar la variable de entorno DATABASE_URL
                           - Modificar el archivo de configuración: db/config.js
+                          - Validar que sequelize-cli este instalada como dependencia de producción
+                          - Correr migraciones en la BD de producción: heroku run npm run migrations:run
                           - Valdidar que todo funcione bien, ejecutar npm run dev y validar endpoints
                           - Agregar engines en el archivo: package.json
                           - Crear el archivo: Procfile
