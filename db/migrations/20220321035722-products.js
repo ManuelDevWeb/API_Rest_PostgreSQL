@@ -30,7 +30,7 @@ module.exports = {
          * await queryInterface.dropTable('users');
          */
         // Eliminando tabla
-        await queryInterface.dropTable(CATEGORY_TABLE);
         await queryInterface.dropTable(PRODUCT_TABLE);
+        await queryInterface.dropTable(CATEGORY_TABLE);
     },
 };

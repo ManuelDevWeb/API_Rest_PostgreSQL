@@ -223,7 +223,7 @@
                           - Guardar cambios: git add y commit
                           - Crear nueva rama: git checkout -b production
                           - Ejecutar: git push heroku production:main (La rama puede variar dependiendo del equipo de trabajo)
-                          - Revertir BD migraciones: heroku run npm run migrations:revert
+                          - Eliminar BD migraciones: heroku run npm run migrations:delete (TENER CUIDADO)
 
 https://arcane-savannah-51622.herokuapp.com/
 
