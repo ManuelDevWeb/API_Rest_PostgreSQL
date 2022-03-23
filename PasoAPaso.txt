@@ -222,11 +222,13 @@
                           - Ejecutar: heroku local web (Correr App localmente)
                           - Guardar cambios: git add y commit
                           - Crear nueva rama: git checkout -b production
-                          - Ejecutar: git push heroku production:main (La rama puede variar dependiendo del equipo de trabajo)
+                          - Ejecutar: git push heroku production:main (Debemos estar en la rama creada en el paso anterior)
                           - Eliminar BD migraciones: heroku run npm run migrations:delete (TENER CUIDADO) Es mejor usar migrate
                           - Volver a ejecutar migraciones: heroku run npm run migrations:run
 
 https://arcane-savannah-51622.herokuapp.com/
+
+https://arcane-savannah-51622.herokuapp.com/api/v1/categories
 
 
 
