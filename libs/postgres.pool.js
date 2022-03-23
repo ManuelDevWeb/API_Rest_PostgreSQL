@@ -11,11 +11,19 @@ const { Pool } = require('pg');
 // Importando la configuración con las variables de entorno
 const { config } = require('./../config/config');
 
-// Protegiendo variables de entorno
-const USER = encodeURIComponent(config.dbUser);
-const PASSWORD = encodeURIComponent(config.dbPassword);
-// Creando URL de conexión
-const URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
+let URI = '';
+
+// Validando el ambiente de desarrollo
+if (config.isProd) {
+    // URL de conexión (en producción)
+    URI = config.dbUrl;
+} else {
+    // Protegiendo variables de entorno
+    const USER = encodeURIComponent(config.dbUser);
+    const PASSWORD = encodeURIComponent(config.dbPassword);
+    // Creando URL de conexión (Modo desarrollo)
+    URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
+}
 
 // Pool para conectarnos a la BD
 const pool = new Pool({

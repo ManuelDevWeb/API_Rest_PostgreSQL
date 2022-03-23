@@ -2,26 +2,29 @@
 const { config } = require('../config/config');
 
 // Protegiendo variables de entorno
-const USER = encodeURIComponent(config.dbUser);
-const PASSWORD = encodeURIComponent(config.dbPassword);
+// const USER = encodeURIComponent(config.dbUser);
+// const PASSWORD = encodeURIComponent(config.dbPassword);
 // Creando URL de conexión
-const URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
+// const URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
 // const URI = `mysql://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
 
 // Exportamos módulo
 module.exports = {
     // Ambiente desarrollo
     development: {
-        url: URI,
+        url: config.dbUrl,
         // Indicamos la BD que estamos utilizando
         dialect: 'postgres',
         // dialect: 'mysql',
     },
     // Ambiente producción
     production: {
-        url: URI,
+        url: config.dbUrl,
         // Indicamos la BD que estamos utilizando
         dialect: 'postgres',
         // dialect: 'mysql',
+        ssl: {
+            rejectUnauthorized: false,
+        },
     },
 };

@@ -194,9 +194,32 @@
 • Deploy en Heroku •
 
 34. Despliegue en Heroku: - Ver documentación del addon: https://elements.heroku.com/addons/heroku-postgresql
-                          - Guardar los cambios y subir a git
+                          - Logearnos en Heroku: heroku login
+                          - Instalar Heroku: https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up
+                          - npm install -g heroku
+                          - Ejecutar: heroku create
+                          - Enlazar heroku a proyecto: heroku git:remote -a arcane-savannah-51622
+                          - git remote -v (Verificar si se ha agregado el repositorio nuevo)
+                          - Agregar el addon para la BD: heroku addons:create heroku-postgresql:hobby-dev
+                          - Para ver la información de la BD postgres ejecutar: heroku pg:info
+                          • Primera opción para definir la URL de la DB dependiendo del ambiente de desarrollo
+                          - Agregar la variable de entorno DATABASE_URL en el archivo: .env
+                          - Modificar el archivo de configuración: config/config.js
+                          - Ir al archivo de conexión de la BD: libs/postgres.pool.js
+                          • Segunda opción para definir la URL de la DB dependiendo del ambiente de desarrollo
+                          - Agregar la variable de entorno DATABASE_URL en el archivo: .env
+                          - Modificar el archivo de configuración: config/config.js
+                          - Ir al archivo de conexión de la BD: libs/sequelize.js
+                          // Se recomienda la segunda opción, ya que solo tocaria manejar la variable de entorno DATABASE_URL
+                          - Modificar el archivo de configuración: db/config.js
+                          - Valdidar que todo funcione bien, ejecutar npm run dev y validar endpoints
+                          -
 
-
+                          - Agregar engines en el archivo: package.json
+                          - Crear el archivo: Procfile
+                          - heroku local web (Correr App localmente)
+                          - git add y commit de los últimos cambios
+                          - git push heroku master (La rama puede variar dependiendo del equipo de trabajo)
 
 
 
