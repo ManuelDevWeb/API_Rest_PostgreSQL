@@ -39,19 +39,19 @@ const OrderSchema = {
         onDelete: 'CASCADE',
     },
     // Calcular el total
-    // total: {
-    //     // Campo virtual, que no estará en la BD
-    //     type: DataTypes.VIRTUAL,
-    //     get() {
-    //         // Validando si hay elementos (items, es la manera en la que llamamos la asociación VER LINEA 64)
-    //         if (this.items.length > 0) {
-    //             return this.items.reduce((total, item) => {
-    //                 return total + item.price * item.OrderProduct.amount;
-    //             }, 0);
-    //         }
-    //         return 0;
-    //     },
-    // },
+    total: {
+        // Campo virtual, que no estará en la BD
+        type: DataTypes.VIRTUAL,
+        get() {
+            // Validando si hay elementos (items, es la manera en la que llamamos la asociación VER LINEA 64)
+            if (this.items.length > 0) {
+                return this.items.reduce((total, item) => {
+                    return total + item.price * item.OrderProduct.amount;
+                }, 0);
+            }
+            return 0;
+        },
+    },
 };
 
 // Definimos una clase para nuestra entidad

@@ -224,6 +224,7 @@
                           - Crear nueva rama: git checkout -b production
                           - Ejecutar: git push heroku production:main (La rama puede variar dependiendo del equipo de trabajo)
                           - Eliminar BD migraciones: heroku run npm run migrations:delete (TENER CUIDADO)
+                          - Volver a ejecutar migraciones: heroku run npm run migrations:run
 
 https://arcane-savannah-51622.herokuapp.com/
 
