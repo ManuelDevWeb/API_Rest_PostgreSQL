@@ -1,6 +1,6 @@
 'use strict';
 
-// const { DataTypes } = require('sequelize/types');
+const { DataTypes } = require('sequelize');
 
 // Importando el modelo CUSTOMER
 const { CUSTOMER_TABLE } = require('./../models/customer.model');
@@ -14,12 +14,12 @@ module.exports = {
          * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
          */
         // Modificando columna, indicamos el nombre de la tabla, el nombre de la columna y la modificación
-        // await queryInterface.changeColumn(CUSTOMER_TABLE, 'user_id', {
-        //     field: 'user_id',
-        //     allowNull: false,
-        //     type: DataTypes.INTEGER,
-        //     unique: true,
-        // });
+        await queryInterface.changeColumn(CUSTOMER_TABLE, 'user_id', {
+            field: 'user_id',
+            allowNull: false,
+            type: DataTypes.INTEGER,
+            unique: true,
+        });
     },
 
     async down(queryInterface) {

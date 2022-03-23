@@ -193,7 +193,10 @@
 
 • Deploy en Heroku •
 
-34. Despliegue en Heroku: - Ver documentación del addon: https://elements.heroku.com/addons/heroku-postgresql
+34. Consideraciones en Migraciones: - Si ya sabemos cuales son nuestras migraciones, pasamos todo a una sola migración
+                                    -
+
+35. Despliegue en Heroku: - Ver documentación del addon: https://elements.heroku.com/addons/heroku-postgresql
                           - Logearnos en Heroku: heroku login
                           - Instalar Heroku: https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up
                           - npm install -g heroku
