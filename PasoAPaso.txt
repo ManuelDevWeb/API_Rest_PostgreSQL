@@ -101,7 +101,7 @@
                                                    - Ir al archivo docker-compose.yml: Agregar el servicio de phpmyadmin
                                                    - Ejecutar contenedor docker: docker-compose up -d phpmyadmin (Se debe tener abierto docker)
                                                    - Verificar que está corriendo: docker-compose ps
-                                                   - DEBEMOS CAMBIAR POR EL PEURTO CORRECTO Y USUARIO EN LAS VARIABLES DE ENTORNO
+                                                   - DEBEMOS CAMBIAR POR EL PUERTO CORRECTO Y USUARIO EN LAS VARIABLES DE ENTORNO (.Env)
                                                    - CAMBIAR LA BASE DE DATOS EN EL ARCHIVO: libs/sequelize
                                                    - Vemos que hay 2 contenedores corriendo, en el navegador ir al puerto de contenedor phpmyadmin
                                                    - Logeranos en el puerto (http://localhost:8080/)
@@ -191,6 +191,10 @@
 33. Filtrando precios con operadores: - Modificar el schema de product y router
                                       - Modificar el método find del servicio de product para aplicar filtros en el archivo: services/products/product.service.js
 
+• Deploy en Heroku •
+
+34. Despliegue en Heroku: - Ver documentación del addon: https://elements.heroku.com/addons/heroku-postgresql
+                          - Guardar los cambios y subir a git
 
 
 

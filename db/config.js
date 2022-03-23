@@ -5,8 +5,8 @@ const { config } = require('../config/config');
 const USER = encodeURIComponent(config.dbUser);
 const PASSWORD = encodeURIComponent(config.dbPassword);
 // Creando URL de conexión
-// const URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
-const URI = `mysql://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
+const URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
+// const URI = `mysql://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
 
 // Exportamos módulo
 module.exports = {
@@ -14,14 +14,14 @@ module.exports = {
     development: {
         url: URI,
         // Indicamos la BD que estamos utilizando
-        // dialect: 'postgres',
-        dialect: 'mysql',
+        dialect: 'postgres',
+        // dialect: 'mysql',
     },
     // Ambiente producción
     production: {
         url: URI,
         // Indicamos la BD que estamos utilizando
-        // dialect: 'postgres',
-        dialect: 'mysql',
+        dialect: 'postgres',
+        // dialect: 'mysql',
     },
 };
