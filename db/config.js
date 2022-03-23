@@ -23,8 +23,10 @@ module.exports = {
         // Indicamos la BD que estamos utilizando
         dialect: 'postgres',
         // dialect: 'mysql',
-        ssl: {
-            rejectUnauthorized: false,
+        dialectOptions: {
+            ssl: {
+                rejectUnauthorized: false,
+            },
         },
     },
 };
