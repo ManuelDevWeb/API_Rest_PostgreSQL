@@ -28,10 +28,16 @@ router.get(
     async(req, res, next) => {
         try {
             // Accediendo a los parámetros de la query
-            const { limit, offset } = req.query;
+            const { limit, offset, price, price_min, price_max } = req.query;
 
             // Obteniendo todos los productos ejecutando el método find
-            const products = await service.find(limit, offset);
+            const products = await service.find(
+                limit,
+                offset,
+                price,
+                price_min,
+                price_max
+            );
             res.json(products);
         } catch (error) {
             // Next permite ejecutar el siguiente middleware, en este caso los middleware tipo error que hayan

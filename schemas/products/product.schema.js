@@ -9,6 +9,9 @@ const description = Joi.string().min(10);
 const image = Joi.string().uri();
 const categoryId = Joi.number().integer();
 
+const price_min = Joi.number().integer();
+const price_max = Joi.number().integer();
+
 const limit = Joi.number().integer();
 const offset = Joi.number().integer();
 
@@ -39,6 +42,13 @@ const getProductSchema = Joi.object({
 const queryProductSchema = Joi.object({
     limit,
     offset,
+    price,
+    price_min,
+    // Si hay un mínimo debemos recibir el máximo
+    price_max: price_max.when('price_min', {
+        is: Joi.number().integer().required(),
+        then: Joi.required(),
+    }),
 });
 
 // Exportamos módulo

@@ -188,6 +188,9 @@
                 - Modificar el schema de product y router
                 - Modificar el método find del servicio de product para aplicar Paginación en el archivo: services/products/product.service.js
 
+33. Filtrando precios con operadores: - Modificar el schema de product y router
+                                      - Modificar el método find del servicio de product para aplicar filtros en el archivo: services/products/product.service.js
+
 
 
 

@@ -2,6 +2,8 @@
 const faker = require('faker');
 // Importando boom (Manejo de errores con status code)
 const boom = require('@hapi/boom');
+// Importando operadores de sequelize
+const { Op } = require('sequelize');
 
 // Importando pool para conectarnos a la BD
 // const pool = require('../../libs/postgres.pool');
@@ -45,12 +47,14 @@ class ProductService {
     }
 
     // Buscar Productos
-    async find(limit = 5, offset = 0) {
+    async find(limit = 5, offset = 0, price, price_min, price_max) {
         const options = {
             // Incluimos las asociaciones definidas en la clase Product del modelo
             include: ['category'],
             limit,
             offset,
+            // Condición para filtrar los productos
+            where: {},
         };
 
         // Validando que los parámetros no estén vacíos y asignando el valor
@@ -59,6 +63,23 @@ class ProductService {
             options.limit = parseInt(limit);
             // Posición en la cual iniciara
             options.offset = parseInt(offset);
+        }
+
+        // Validando que el parámetro price no esté vacío y asignando el valor
+        if (price) {
+            // Indicamos el atributo (price) para hacer la búsqueda, donde el precio sea igual al valor enviado por query
+            //options.where.price = price;
+        }
+
+        // Validando que el parámetro price_min y price_max no estén vacíos y asignando el valor
+        if (price_min && price_max) {
+            // Indicamos los atributos (price_min y price_max) para hacer la búsqueda donde el precio sea encuentre en el rango de valores enviados por query
+            options.where.price = {
+                [Op.gte]: price_min, // >=
+                [Op.lte]: price_max, // <=
+                // Otra opción
+                // [Op.between]: [price_min, price_max],
+            };
         }
 
         // Buscar producto con las funcionalidades que nos brinda el ORM Sequelize
