@@ -14,10 +14,12 @@ const options = {
     logging: config.isProd ? false : true,
 };
 
-// Validando si estamos en producción para agregar sll
+// Validando si estamos en producción para agregar ssl
 if (config.isProd) {
-    options.ssl = {
-        rejectUnauthorized: false,
+    options.dialectOptions = {
+        ssl: {
+            rejectUnauthorized: false,
+        },
     };
 }
 

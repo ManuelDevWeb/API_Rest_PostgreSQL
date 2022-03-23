@@ -213,13 +213,14 @@
                           // Se recomienda la segunda opción, ya que solo tocaria manejar la variable de entorno DATABASE_URL
                           - Modificar el archivo de configuración: db/config.js
                           - Valdidar que todo funcione bien, ejecutar npm run dev y validar endpoints
-                          -
-
                           - Agregar engines en el archivo: package.json
                           - Crear el archivo: Procfile
-                          - heroku local web (Correr App localmente)
-                          - git add y commit de los últimos cambios
-                          - git push heroku master (La rama puede variar dependiendo del equipo de trabajo)
+                          - Ejecutar: heroku local web (Correr App localmente)
+                          - Guardar cambios: git add y commit
+                          - Crear nueva rama: git checkout -b production
+                          - Ejecutar: git push heroku production:main (La rama puede variar dependiendo del equipo de trabajo)
+
+https://arcane-savannah-51622.herokuapp.com/
 
 
 

@@ -11,25 +11,27 @@ const { Pool } = require('pg');
 // Importando la configuración con las variables de entorno
 const { config } = require('./../config/config');
 
-let URI = '';
+const options = {};
 
-// Validando el ambiente de desarrollo
+// Validando el ambiente producción
 if (config.isProd) {
     // URL de conexión (en producción)
-    URI = config.dbUrl;
+    // Tener en cuenta que estamos usando docker
+    options.connectionString = config.dbUrl;
+    options.ssl = {
+        rejectUnauthorized: false,
+    };
 } else {
     // Protegiendo variables de entorno
     const USER = encodeURIComponent(config.dbUser);
     const PASSWORD = encodeURIComponent(config.dbPassword);
     // Creando URL de conexión (Modo desarrollo)
-    URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
+    const URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
+    options.connectionString = URI;
 }
 
 // Pool para conectarnos a la BD
-const pool = new Pool({
-    // Tener en cuenta que estamos usando docker
-    connectionString: URI,
-});
+const pool = new Pool(options);
 
 // Exportamos módulo
 module.exports = pool;
